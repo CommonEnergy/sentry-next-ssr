@@ -1,7 +1,18 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
+export function getServerSideProps () {
+  return {
+    props: {
+      a: 'b',
+    }
+  }
+}
+
+export default function Home () {
+  if (typeof window === 'undefined') throw new Error('server-side error')
+  else throw new Error('client-side error')
+
   return (
     <div className={styles.container}>
       <Head>
